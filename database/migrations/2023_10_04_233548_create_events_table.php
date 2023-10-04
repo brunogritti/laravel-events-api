@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->text('name');
             $table->date('date');
-            $table->foreignId('address')->constrained('addresses');
+            $table->foreignId('category_id')->constrained('event_categories');
+            $table->foreignId('address_id')->constrained('addresses');
             $table->timestamps();
         });
     }
