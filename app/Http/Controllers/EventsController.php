@@ -26,13 +26,13 @@ class EventsController extends Controller
     public function store(EventRequest $eventRequest)
     {
         try {
-            $events = Event::all();
 
-            return response()->json($events);
+            return response()
+                ->json(Event::create($eventRequest->all()), 201);
 
         } catch (\Throwable $th) {
             return response()->json([
-                'error' => $e->getMessage(),
+                'error' => $th->getMessage(),
                 'message' => "An error ocurred",
             ], 422);
         }
