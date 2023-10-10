@@ -22,3 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('/events', EventsController::class);
+//subrecursos
+Route::get('/events/{event}/guests', function () {
+    return view('welcome');
+});
+Route::get('/events/{event}/guests/{guest}', function () {
+    return view('welcome');
+});
