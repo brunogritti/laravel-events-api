@@ -6,6 +6,18 @@ All notable changes to this project will be documented in this file ordered by n
 ## [1.0.0] - 2023-10-09 - Bruno Gritti
  
 #### Added
+ - active to events table
+ - mutator to return boolean type in json
+ - Search to /events GET
+ - pagination
+#### Changed
+#### Fixed
+
+---
+
+## [1.0.0] - 2023-10-09 - Bruno Gritti
+ 
+#### Added
  - show, update and delete routes
  - ExceptionHandler to return json format
 #### Changed

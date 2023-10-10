@@ -8,12 +8,18 @@ use Illuminate\Http\Request;
 
 class EventsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $events = Event::all();
+            $events = Event::query();
 
-            return response()->json($events);
+            if($request->has('name')){
+                $events->where('name', 'like', '%'.$request->name.'%');
+            }
+
+            $perPage = $request->per_page ?? $this->perPage;
+            
+            return response()->json($events->paginate($perPage));
 
         } catch (\Throwable $th) {
             return response()->json([
