@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EventRequest;
 use App\Models\Event;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 
 class EventsController extends Controller
@@ -18,7 +19,7 @@ class EventsController extends Controller
             }
 
             $perPage = $request->per_page ?? $this->perPage;
-            
+
             return response()->json($events->paginate($perPage));
 
         } catch (\Throwable $th) {
@@ -29,12 +30,14 @@ class EventsController extends Controller
         }
     }
 
-    public function store(EventRequest $eventRequest)
+    public function store(EventRequest $eventRequest, Authenticatable $user)
     {
         try {
 
-            return response()
-                ->json(Event::create($eventRequest->all()), 201);
+            if ($user->tokenCan('events:store')) {
+                return response()
+                    ->json(Event::create($eventRequest->all()), 201);
+            }
 
         } catch (\Throwable $th) {
             return response()->json([

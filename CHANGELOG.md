@@ -10,6 +10,8 @@ All notable changes to this project will be documented in this file ordered by n
  - mutator to return boolean type in json
  - Search to /events GET
  - pagination
+ - links accessor for hateoas
+ - sanctum for tokens and auth middleware
 #### Changed
 #### Fixed
 
