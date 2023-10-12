@@ -37,6 +37,9 @@ class EventsController extends Controller
             if ($user->tokenCan('events:store')) {
                 return response()
                     ->json(Event::create($eventRequest->all()), 201);
+            } else {
+                return response()
+                    ->json("You don't have permission to store new events", 403);
             }
 
         } catch (\Throwable $th) {
